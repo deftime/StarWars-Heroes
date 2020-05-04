@@ -36,29 +36,46 @@ function paging(event) {
 
 function listCreator(list) {
   for (var i = 0; i < list.length; i++) {
-    let hero = document.createElement('div');
-    hero.classList.add('hero');
-    let heroPic = document.createElement('div');
-    heroPic.classList.add('pic');
-    heroPic.style.backgroundImage = `url('./images/heroes/${list[i].name}_face.jpg')`;
-    let heroName = document.createElement('span');
-    heroName.innerText = list[i].name;
+    (function(i) {
+      setTimeout(function() {
+        let hero = document.createElement('div');
+        hero.classList.add('hero');
+        let heroPic = document.createElement('div');
+        heroPic.classList.add('pic');
+        heroPic.style.backgroundImage = `url('./images/heroes/${list[i].name}_face.jpg')`;
+        let heroName = document.createElement('span');
+        heroName.innerText = list[i].name;
 
-    hero.append(heroPic);
-    hero.append(heroName);
+        hero.append(heroPic);
+        hero.append(heroName);
 
-    heroPic.addEventListener('click', showHero);
+        heroPic.addEventListener('click', showHero);
 
-    heroContainer.append(hero);
+        heroContainer.append(hero);
+
+        setTimeout(()=>{
+          hero.style.opacity = '1';
+        }, 200)
+
+      }, 200*i)
+    })(i);
+
   }
 }
 
 function showHero(event) {
-  heroContainer.style.display = 'none';
-  heroData.style.display = 'block';
-  pagsNum[0].parentElement.style.display = 'none';
-  heroContainer.parentElement.style.height = '610px';
-  backButt.style.display = 'block';
+  heroContainer.parentElement.style.height = '0px';
+  heroContainer.parentElement.style.padding = '0px 20px';
+
+  setTimeout(()=>{
+    heroContainer.style.display = 'none';
+    heroData.style.display = 'block';
+    pagsNum[0].parentElement.style.display = 'none';
+    backButt.style.display = 'block';
+    backButt.style.position = 'absolute';
+    heroContainer.parentElement.style.padding = '20px';
+    heroContainer.parentElement.style.height = '610px';
+  }, 800);
 
   let selectedHero;
 
@@ -85,11 +102,19 @@ function showHero(event) {
 }
 
 function backToList() {
-  heroContainer.style.display = 'flex';
-  heroData.style.display = 'none';
-  pagsNum[0].parentElement.style.display = 'block';
-  heroContainer.parentElement.style.height = '450px';
-  backButt.style.display = 'none';
+  heroContainer.parentElement.style.height = '0px';
+  heroContainer.parentElement.style.padding = '0px 20px';
+
+  setTimeout(()=>{
+    heroContainer.style.display = 'flex';
+    heroData.style.display = 'none';
+    pagsNum[0].parentElement.style.display = 'block';
+    heroContainer.parentElement.style.height = '450px';
+    backButt.style.display = 'none';
+    heroContainer.parentElement.style.padding = '20px';
+    heroContainer.parentElement.style.height = '450px';
+  }, 900);
+
 }
 
 function getData(link, place) {

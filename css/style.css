@@ -47,19 +47,23 @@ footer {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   background-color: rgba(0, 74, 127, 0.3);
+  overflow: hidden;
+  transition: 0.8s;
 }
 
 .main .list-wrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .hero {
   width: 150px;
-  padding: 5px 20px 30px 20px;
+  padding: 5px 25px 30px 25px;
   text-align: center;
   cursor: pointer;
+  transition: 1s;
+  opacity: 0;
 }
 
 .hero .pic {
@@ -206,4 +210,41 @@ footer {
   margin-bottom: 20px;
   margin-left: -20px;
   cursor: pointer;
+}
+
+/* --MOBILE-- */
+
+@media screen and (max-width: 1050px) {
+  .main {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .main .list-wrap {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row_char .char_info {
+    line-height: 30px;
+  }
+  .tag {
+    font-size: 15px;
+  }
+
+  .tag + span {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  .row_info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row_info div {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
