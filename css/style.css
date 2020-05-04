@@ -216,7 +216,7 @@ footer {
 
 @media screen and (max-width: 1050px) {
   .main {
-    width: 100%;
+    width: 90%;
     overflow: auto;
   }
 
@@ -246,5 +246,17 @@ footer {
   .row_info div {
     width: 100%;
     margin-bottom: 15px;
+  }
+
+  .back-butt {
+    width: 150px;
+    font-size: 15px;
+    margin-top: -55px;
+    margin-bottom: 20px;
+    margin-left: 105px;
+  }
+
+  .pagination {
+    width: 270px;
   }
 }
