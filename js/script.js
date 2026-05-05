@@ -7,9 +7,9 @@ let filmsBlock = document.querySelector('#films_list');
 let shipsBlock = document.querySelector('#ships_list');
 let transportBlock = document.querySelector('#transport_list');
 
-fetch('https://swapi.dev/api/people/')
+fetch('https://swapi.info/api/people/')
 .then(response => response.json())
-.then(obj => currentHeroList = obj.results)
+.then(obj => currentHeroList = obj)
 .then(e => listCreator(currentHeroList));
 
 for (let key of pagsNum) {
@@ -27,9 +27,9 @@ function paging(event) {
       event.target.style.textDecoration = 'underline';
     }
   }
-  fetch(`https://swapi.dev/api/people/?page=${event.target.innerText}`)
+  fetch(`https://swapi.info/api/people/?page=${event.target.innerText}`)
   .then(response => response.json())
-  .then(obj => currentHeroList = obj.results)
+  .then(obj => currentHeroList = obj)
   .then(e => listCreator(currentHeroList))
   .catch(er => console.log(er));
 }
