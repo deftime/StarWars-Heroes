@@ -108,7 +108,7 @@ function backToList() {
   setTimeout(()=>{
     heroContainer.style.display = 'flex';
     heroData.style.display = 'none';
-    pagsNum[0].parentElement.style.display = 'block';
+    //pagsNum[0].parentElement.style.display = 'block'; // temp hide pagin
     heroContainer.parentElement.style.height = '450px';
     backButt.style.display = 'none';
     heroContainer.parentElement.style.padding = '20px';
@@ -126,7 +126,7 @@ function getData(link, place) {
       if (obj.name) {
         place.innerText = obj.name;
       } else {
-        place. innerText = obj.title;
+        place.innerText = obj.title;
       }
     })
   } else {
