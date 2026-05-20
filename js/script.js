@@ -1,4 +1,5 @@
 let currentHeroList;
+let heroListOfLists = [];
 let heroContainer = document.querySelector('.list-wrap');
 let heroData = document.querySelector('.hero-wrap');
 let pagsNum = document.querySelectorAll('.pagination span');
@@ -9,8 +10,18 @@ let transportBlock = document.querySelector('#transport_list');
 
 fetch('https://swapi.info/api/people/')
 .then(response => response.json())
-.then(obj => currentHeroList = obj)
-.then(e => listCreator(currentHeroList));
+.then(obj => {
+  for (let i = 0; i < 10; i++) {
+    heroListOfLists.push([]);
+    obj.forEach((elem, index)=>{
+      if (index >= i*9 && index <= (i*9)+9) {
+        heroListOfLists[i].push(elem);
+      }
+    })
+  }
+  currentHeroList = obj;
+})
+.then(e => listCreator(heroListOfLists[0]));
 
 for (let key of pagsNum) {
   key.addEventListener('click', paging);
@@ -27,11 +38,17 @@ function paging(event) {
       event.target.style.textDecoration = 'underline';
     }
   }
-  fetch(`https://swapi.info/api/people/?page=${event.target.innerText}`)
-  .then(response => response.json())
-  .then(obj => currentHeroList = obj)
-  .then(e => listCreator(currentHeroList))
-  .catch(er => console.log(er));
+  listCreator(heroListOfLists[event.target.dataset.page]);
+  console.log(event.target.dataset.page);
+
+  // Before, there was a fetch for get paged data,
+  // but later API removed support pagination.
+
+  // fetch(`https://swapi.info/api/people/?page=${event.target.innerText}`)
+  // .then(response => response.json())
+  // .then(obj => currentHeroList = obj)
+  // .then(e => listCreator(currentHeroList))
+  // .catch(er => console.log(er));
 }
 
 function listCreator(list) {
@@ -108,7 +125,7 @@ function backToList() {
   setTimeout(()=>{
     heroContainer.style.display = 'flex';
     heroData.style.display = 'none';
-    //pagsNum[0].parentElement.style.display = 'block'; // temp hide pagin
+    pagsNum[0].parentElement.style.display = 'block'; // temp hide pagin
     heroContainer.parentElement.style.height = '450px';
     backButt.style.display = 'none';
     heroContainer.parentElement.style.padding = '20px';
