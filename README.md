@@ -1,7 +1,6 @@
 ```
 HTML/CSS
 JavaScript
-Google Firebase, Realtime Database
 SWAPI (Star Wars API)
 no-framework
 no-build
